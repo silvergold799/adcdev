@@ -1,12 +1,9 @@
-server:
-  port: '8080'
-  servlet:
-    context-path: '/'
+##server:
+##  servlet:
+##    context-path: '/'
 
-spring:
-  mvc:
-    view:
-      prefix: '/WEB-INF/views/'
-      suffix: '.jsp'
-  profiles:
-    active : 'dev'
+##spring:
+##  mvc:
+##    view:
+##      prefix: '/WEB-INF/views/'
+##      suffix: '.jsp'
