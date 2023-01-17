@@ -1,9 +1,10 @@
-##server:
-##  servlet:
-##    context-path: '/'
+server:
+  port: 8080
+  servlet:
+    context-path: '/'
 
-##spring:
-##  mvc:
-##    view:
-##      prefix: '/WEB-INF/views/'
-##      suffix: '.jsp'
+spring:
+  mvc:
+    view:
+      prefix: '/WEB-INF/views/'
+      suffix: '.jsp'
