@@ -16,16 +16,19 @@ public class HelloController {
 	
 	@RequestMapping("/")
 	public ModelAndView main() {
+		log.info("====================main");
 		return new ModelAndView("/index");
 	}
 	
 	@RequestMapping("/index")
 	public ModelAndView index(ModelAndView mav) {
+		log.info("====================index");
 		return mav;
 	}
 	
 	@RequestMapping("/login")
 	public ModelAndView login(ModelAndView mav) throws Exception{
+		log.info("====================login");
         
         mav.addObject("key", "fruits");
         
@@ -36,7 +39,6 @@ public class HelloController {
         fruitList.add("banana");
          
         mav.addObject("value", fruitList);
-        
         return mav;
     }
 

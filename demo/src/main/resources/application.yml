@@ -1,5 +1,20 @@
+# 서버 포트
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# servlet의 접두사와 접미사
+# html, js, css, mapper들의 위치
 spring:
   mvc:
     view:
-      prefix: '/WEB-INF/views/'
-      suffix: '.jsp'
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  
+# 서버 자동 재가동
+  devtools:
+    livereload: 
+      enabled: true
+  freemarker:
+    cache: false
