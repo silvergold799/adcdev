@@ -8,7 +8,7 @@ spec:
   selector:
     app: adc-app
   ports:
-    - port: 80
+    - port: 80  #80 포트 사용할 경우 외부 ip로만으로도 접근가능, 다른 port일 경우 port 까지 url주소에 표기 하여아함
       protocol: TCP
       targetPort: 8080
   type: LoadBalancer
