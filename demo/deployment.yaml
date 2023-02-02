@@ -1,100 +1,39 @@
-# Copyright Istio Authors
-#
-#   Licensed under the Apache License, Version 2.0 (the "License");
-#   you may not use this file except in compliance with the License.
-#   You may obtain a copy of the License at
-#
-#       http://www.apache.org/licenses/LICENSE-2.0
-#
-#   Unless required by applicable law or agreed to in writing, software
-#   distributed under the License is distributed on an "AS IS" BASIS,
-#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#   See the License for the specific language governing permissions and
-#   limitations under the License.
-
-##################################################################################################
-# This file defines the services, service accounts, and deployments for the Bookinfo sample.
-#
-# To apply all 4 Bookinfo services, their corresponding service accounts, and deployments:
-#
-#   kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
-#
-# Alternatively, you can deploy any resource separately:
-#
-#   kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml -l service=reviews # reviews Service
-#   kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml -l account=reviews # reviews ServiceAccount
-#   kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml -l app=reviews,version=v3 # reviews-v3 Deployment
-##################################################################################################
-
-##################################################################################################
-# Productpage services
-##################################################################################################
 apiVersion: v1
 kind: Service
 metadata:
-#  name: productpage
-  name: adcdev
+  name: adc-sv
   labels:
-#    app: productpage
-#    service: productpage
-    app: adcdev
-    service: adcdev
+    app: adc-sv
 spec:
-  ports:
-  - port: 9080
-    name: http
   selector:
-#    app: productpage
-    app: adcdev
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-#  name: bookinfo-productpage
-  name: serviceaccount-adcdev
-  labels:
-#    account: productpage
-    account: adcdev
+    app: adc-app
+  ports:
+    - port: 80  #80 포트 사용할 경우 외부 ip로만으로도 접근가능, 다른 port일 경우 port 까지 url주소에 표기 하여아함
+      protocol: TCP
+      targetPort: 8080
+  type: LoadBalancer
+        
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-#  name: productpage-v1
-  name: adcdev-v1
+  name: adc-dp
   labels:
-#    app: productpage
-    app: adcdev
-    version: v1
+    app: adc-dp
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-#      app: productpage
-      app: adcdev
-      version: v1
+      app: adc-app
   template:
     metadata:
+      name: adc-app-pod
       labels:
-#        app: productpage
-        app: adcdev
-        version: v1
+        app: adc-app
     spec:
-#      serviceAccountName: bookinfo-productpage
-      serviceAccountName: serviceaccount-adcdev
       containers:
-#      - name: productpage
-      - name: adcdev
-#        image: docker.io/istio/examples-bookinfo-productpage-v1:1.17.0
-        image: ./build/libs/demo-0.0.1-SNAPSHOT.war
-        imagePullPolicy: IfNotPresent
+      - name: adc-app
+        image: docker.io/parkkihong/silvergold799:v1.2
+        imagePullPolicy: Always
         ports:
-        - containerPort: 9080
-        volumeMounts:
-        - name: tmp
-          mountPath: /tmp
-        securityContext:
-          runAsUser: 1000
-      volumes:
-      - name: tmp
-        emptyDir: {}
----
+        - containerPort: 8080
