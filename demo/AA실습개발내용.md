@@ -136,15 +136,28 @@ kubectl rollout status deployment/kiali -n istio-system
 istioctl dashboard kiali
 ```
 
+* istio addons 외부접속설정
+* 애드온을 노출하도록 도메인을 설정
+* 공식 문서를 참고하여 외부 접속을 설정합니다.
+* https://istio.io/latest/docs/tasks/observability/gateways/#option-2-insecure-access-http
+```sh
+export INGRESS_DOMAIN="istioaddons.com"
+```
 
+* 도메인이 없는 경우 제공된 IP 주소로 자동 확인되는 도메인을 사용
+```sh
+export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+export INGRESS_DOMAIN=${INGRESS_HOST}.nip.io
+
+```
 
 
 # Istio
 istio operator reference
-https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
+- https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/
 
-- Source IP 전달하기
-참조: https://istio.io/latest/docs/tasks/security/authorization/authz-ingress/#source-ip-address-of-the-original-client
+- Source IP 전달하기 참조
+- https://istio.io/latest/docs/tasks/security/authorization/authz-ingress/#source-ip-address-of-the-original-client
 
 GCP 의 경우 아래와 같이 적용
 ```sh
