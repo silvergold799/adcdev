@@ -11,8 +11,7 @@ spec:
     - port: 80  #80 포트 사용할 경우 외부 ip로만으로도 접근가능, 다른 port일 경우 port 까지 url주소에 표기 하여아함
       protocol: TCP
       targetPort: 8080
-  type: LoadBalancer
-        
+  #type: LoadBalancer # istio ingressgateway 사용시 dsable
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -21,7 +20,7 @@ metadata:
   labels:
     app: adc-dp
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: adc-app
@@ -33,7 +32,85 @@ spec:
     spec:
       containers:
       - name: adc-app
-        image: docker.io/parkkihong/silvergold799:v1.2
+        image: docker.io/parkkihong/silvergold799:v1.3
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adc-sv2
+  labels:
+    app: adc-sv2
+spec:
+  selector:
+    app: adc-app2
+  ports:
+    - port: 80  #80 포트 사용할 경우 외부 ip로만으로도 접근가능, 다른 port일 경우 port 까지 url주소에 표기 하여아함
+      protocol: TCP
+      targetPort: 8080
+  #type: LoadBalancer # istio ingressgateway 사용시 dsable
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adc-dp2
+  labels:
+    app: adc-dp2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adc-app2
+  template:
+    metadata:
+      name: adc-app-pod2
+      labels:
+        app: adc-app2
+    spec:
+      containers:
+      - name: adc-app2
+        image: docker.io/parkkihong/silvergold799:v1.3
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adc-sv3
+  labels:
+    app: adc-sv3
+spec:
+  selector:
+    app: adc-app3
+  ports:
+    - port: 80  #80 포트 사용할 경우 외부 ip로만으로도 접근가능, 다른 port일 경우 port 까지 url주소에 표기 하여아함
+      protocol: TCP
+      targetPort: 8080
+  #type: LoadBalancer # istio ingressgateway 사용시 dsable
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adc-dp3
+  labels:
+    app: adc-dp3
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: adc-app3
+  template:
+    metadata:
+      name: adc-app-pod3
+      labels:
+        app: adc-app3
+    spec:
+      containers:
+      - name: adc-app3
+        image: docker.io/parkkihong/silvergold799:v1.3
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

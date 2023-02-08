@@ -1,0 +1,61 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: adc-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - hosts:
+      - "*"
+    port:
+      number: 80
+      name: http
+      protocol: HTTP
+#  - hosts:
+#     - "*"
+#    port:
+#      number: 443
+#      name: https
+#      protocol: HTTPS
+#    tls:
+#      mode: SIMPLE # 통상적인 tls 모드입니다
+#      credentialName: adc-gateway-credential # 쿠버네티스 secret 명을 입력
+    
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: adc-virtualservice
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - adc-gateway
+  http:
+  - name: adc-vs-login
+    match:
+      - uri:
+          prefix: /main # main 하위url 미허용 
+      - uri:
+          prefix: /login # login 하위 url 허용
+    route:
+      - destination:
+          host: adc-sv # 연결될 서비스 name
+          port:
+            number: 80
+  - name: adc-vs-index
+    match:
+      - uri: # url /index는  VS 2 서비스로 보낸다
+          prefix: /index
+    route:
+      - destination:
+          host: adc-sv2 # 연결될 서비스 name
+          port:
+            number: 80
+  - name: adc-vs-other
+    route:
+      - destination:
+          host: adc-sv3 # 연결될 서비스 name
+          port:
+            number: 80
