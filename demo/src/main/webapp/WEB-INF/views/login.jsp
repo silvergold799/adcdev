@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>login 페이지</h1>
-	<div>
-		<p>아이디</p>
-		<input type="text" name="id" size="30"/>
-		<p>비밀번호</p>
-		<input type="text" name="pw" size="30"/>
+	<div style="background-color: yellow; height: 400px; padding-top: 100px;" align="center" >
+		<h1>login 페이지</h1>
+		아이디 : <input type="text" name="id" size="30"/>
+		<br/>
+		비밀번호 : <input type="text" name="pw" size="30"/>
 	</div>
 </body>
 </html>
