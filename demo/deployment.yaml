@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: adc-app
-        image: docker.io/parkkihong/silvergold799:v1.3
+        image: docker.io/parkkihong/silvergold799:v1.4
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -71,7 +71,7 @@ spec:
     spec:
       containers:
       - name: adc-app2
-        image: docker.io/parkkihong/silvergold799:v1.3
+        image: docker.io/parkkihong/silvergold799:v1.4
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -110,7 +110,7 @@ spec:
     spec:
       containers:
       - name: adc-app3
-        image: docker.io/parkkihong/silvergold799:v1.3
+        image: docker.io/parkkihong/silvergold799:v1.4
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
