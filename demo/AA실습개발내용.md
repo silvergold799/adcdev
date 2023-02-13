@@ -1,5 +1,5 @@
 ***
-# Git (GKE 클러스터 생성시 자동설치 되어 있다)
+# 1. Git (GKE 클러스터 생성시 자동설치 되어 있다)
 ***
 
 * Github에서 프로젝트 소스 파일을 클라우드 Repository로 가져온다.
@@ -66,8 +66,13 @@ docker rmi 이미지id
 ```
 
 ***
-# Istio
+# 2. Istio
 ***
+
+* namespace 생성
+```sh
+kubectl create namespace [이름]
+```
 
 * Istio 다운로드
 ```sh
@@ -142,12 +147,16 @@ istioctl dashboard kiali
 * https://istio.io/latest/docs/tasks/observability/gateways/#option-2-insecure-access-http
 ```sh
 export INGRESS_DOMAIN="istioaddons.com"
+
+echo $INGRESS_DOMAIN
 ```
 
 * 도메인이 없는 경우 제공된 IP 주소로 자동 확인되는 도메인을 사용
 ```sh
 export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 export INGRESS_DOMAIN=${INGRESS_HOST}.nip.io
+
+echo $INGRESS_DOMAIN
 
 ```
 
