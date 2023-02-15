@@ -29,18 +29,24 @@ public class HelloController {
 	@RequestMapping("/login")
 	public ModelAndView login(ModelAndView mav) throws Exception{
 		log.info("====================login");
-        
-        mav.addObject("key", "fruits");
-        
-        List<String> fruitList = new ArrayList<String>();
-        
-        fruitList.add("apple");
-        fruitList.add("orange");
-        fruitList.add("banana");
-         
-        mav.addObject("value", fruitList);
         return mav;
     }
+	
+	@RequestMapping("/list")
+	public ModelAndView list(ModelAndView mav) throws Exception{
+		log.info("====================list");
+		
+		mav.addObject("key", "fruits");
+		
+		List<String> fruitList = new ArrayList<String>();
+		
+		fruitList.add("apple");
+		fruitList.add("orange");
+		fruitList.add("banana");
+		
+		mav.addObject("fruitList", fruitList);
+		return mav;
+	}
 
 
 }
