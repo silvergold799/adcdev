@@ -1,11 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -13,5 +8,10 @@
 	<div style="background-color: yellow; height: 400px; padding-top: 100px;" align="center" >
 		<h1>AA 메인 페이지</h1>
 	</div>
+	<div style="background-color: yellow; height: 50px;  padding-top: 10px;" align="center" >
+		<a href="/index"><button>메인 페이지이동</button></a>
+		<a href="/login"><button>로그인 페이지이동</button></a>
+		<a href="/list"><button>리스트 페이지이동</button></a>
+	</div>	
 </body>
 </html>

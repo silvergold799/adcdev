@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div style="background-color: green; height: 400px; padding-top: 100px;" align="center" >
+	<div style="background-color: yellow; height: 400px; padding-top: 100px;" align="center" >
 		<h1>list 페이지</h1>
 		<div>
 			<ul>
@@ -17,5 +17,10 @@
 			</ul>
 		</div>
 	</div>
+	<div style="background-color: yellow; height: 50px;  padding-top: 10px;" align="center" >
+		<a href="/index"><button>메인 페이지이동</button></a>
+		<a href="/login"><button>로그인 페이지이동</button></a>
+		<a href="/list"><button>리스트 페이지이동</button></a>
+	</div>	
 </body>
 </html>
