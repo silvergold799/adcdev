@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,5 +12,10 @@
 		<br/>
 		비밀번호 : <input type="text" name="pw" size="30"/>
 	</div>
+	<div style="background-color: yellow; height: 50px;  padding-top: 10px;" align="center" >
+		<a href="/index"><button>메인 페이지이동</button></a>
+		<a href="/login"><button>로그인 페이지이동</button></a>
+		<a href="/list"><button>리스트 페이지이동</button></a>
+	</div>		
 </body>
 </html>
